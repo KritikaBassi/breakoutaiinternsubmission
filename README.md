@@ -14,7 +14,7 @@ Django-based email automation application that enables users to upload contact d
 
 ## 🗂 Project Structure
 
-
+```bash
 email_sender/
 ├── manage.py
 ├── email_sender/
@@ -49,7 +49,7 @@ email_sender/
 │   └── emails/
 │       └── index.html
 └── requirements.txt
-
+```
 ## 💻 Installation
 
 ### Prerequisites
