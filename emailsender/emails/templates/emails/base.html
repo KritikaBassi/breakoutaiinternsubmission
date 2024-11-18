@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Email Sender</title>
+    <link rel="stylesheet" href="{% static 'emails/style.css' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.js"></script>
+</head>
+<body>
+    <div class="navbar">
+        <a href="{% url 'upload_csv' %}">Upload CSV</a>
+        <a href="{% url 'create_prompt' %}">Create Template</a>
+        <a href="{% url 'schedule_emails' %}">Schedule Emails</a>
+        <a href="{% url 'email_status' %}">Email Status</a>
+        <a href="{% url 'dashboard' %}">Dashboard</a>
+    </div>
+    <div class="content">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>

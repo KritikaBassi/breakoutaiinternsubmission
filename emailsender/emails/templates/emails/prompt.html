@@ -1,0 +1,17 @@
+{% extends 'emails/base.html' %}
+{% block content %}
+<h1>Create Email Template</h1>
+<form method="post">
+    {% csrf_token %}
+    <label for="subject">Subject:</label><br>
+    <input type="text" name="subject" required><br><br>
+    <label for="body">Body:</label><br>
+    <textarea name="body" rows="10" cols="50" required></textarea><br><br>
+    <p>You can use placeholders like:
+        {% for column in columns %}
+            {{ "{{ " }}{{ column|capfirst }}{{ " }}}}" }},
+        {% endfor %}
+    </p>
+    <button type="submit">Save Template</button>
+</form>
+{% endblock %}

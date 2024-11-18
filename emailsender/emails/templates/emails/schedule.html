@@ -1,0 +1,42 @@
+{% extends 'emails/base.html' %}
+{% block content %}
+<h1>Schedule Emails</h1>
+<form method="post">
+    {% csrf_token %}
+    <label>Schedule Option:</label><br>
+    <input type="radio" name="schedule_option" value="immediate" checked> Send Immediately<br>
+    <input type="radio" name="schedule_option" value="specific_time"> Schedule for Specific Time<br>
+    <input type="radio" name="schedule_option" value="staggered"> Staggered Sending<br><br>
+    <div id="specific_time_input" style="display: none;">
+        <label for="specific_time">Specific Time:</label><br>
+        <input type="datetime-local" name="specific_time"><br><br>
+    </div>
+    <div id="staggered_input" style="display: none;">
+        <label for="interval">Interval between emails (in seconds):</label><br>
+        <input type="number" name="interval" value="10"><br><br>
+    </div>
+    <label for="throttle_rate">Throttle Rate (emails per minute):</label><br>
+    <input type="number" name="throttle_rate" value="10"><br><br>
+    <button type="submit">Schedule Emails</button>
+</form>
+<script>
+    const scheduleOptions = document.getElementsByName('schedule_option');
+    const specificTimeInput = document.getElementById('specific_time_input');
+    const staggeredInput = document.getElementById('staggered_input');
+
+    scheduleOptions.forEach((option) => {
+        option.addEventListener('change', function() {
+            if (this.value === 'specific_time') {
+                specificTimeInput.style.display = 'block';
+                staggeredInput.style.display = 'none';
+            } else if (this.value === 'staggered') {
+                specificTimeInput.style.display = 'none';
+                staggeredInput.style.display = 'block';
+            } else {
+                specificTimeInput.style.display = 'none';
+                staggeredInput.style.display = 'none';
+            }
+        });
+    });
+</script>
+{% endblock %}

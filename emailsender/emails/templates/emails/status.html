@@ -1,0 +1,28 @@
+{% extends 'emails/base.html' %}
+{% block content %}
+<h1>Email Status</h1>
+<table>
+    <tr>
+        <th>Email</th>
+        <th>Status</th>
+        <th>Delivery Status</th>
+        <th>Opened</th>
+    </tr>
+    {% for recipient in recipients %}
+    <tr>
+        <td>{{ recipient.email }}</td>
+        <td>{{ recipient.status }}</td>
+        <td>{{ recipient.delivery_status }}</td>
+        <td>{{ recipient.opens }}</td>
+    </tr>
+    {% endfor %}
+</table>
+<script>
+    const socket = new WebSocket('ws://' + window.location.host + '/ws/status/');
+    socket.onmessage = function(e) {
+        const data = JSON.parse(e.data);
+        alert(data.message);
+        window.location.reload();
+    };
+</script>
+{% endblock %}

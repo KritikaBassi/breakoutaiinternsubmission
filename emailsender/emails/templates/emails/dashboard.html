@@ -1,0 +1,12 @@
+{% extends 'emails/base.html' %}
+{% block content %}
+<h1>Email Analytics Dashboard</h1>
+<ul>
+    <li>Total Emails: {{ total_emails }}</li>
+    <li>Emails Sent: {{ emails_sent }}</li>
+    <li>Emails Pending: {{ emails_pending }}</li>
+    <li>Emails Scheduled: {{ emails_scheduled }}</li>
+    <li>Emails Failed: {{ emails_failed }}</li>
+    <li>Emails Opened: {{ emails_opened }}</li>
+</ul>
+{% endblock %}
