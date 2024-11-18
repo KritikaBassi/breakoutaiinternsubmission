@@ -60,7 +60,7 @@ email_sender/
 
 1. **Create a Virtual Environment**
 
-'''bash
+```bash
 # Create virtual environment
 python3 -m venv venv
 
@@ -69,17 +69,17 @@ python3 -m venv venv
 .\venv\Scripts\activate
 # On Unix or MacOS
 source venv/bin/activate
-'''
+```
 
 2. **Install Dependencies**
 
-'''bash
+```bash
 pip install -r requirements.txt
-'''
+```
 
 **Dependencies List (requirements.txt)**
 
-'''plaintext
+```plaintext
 Django==3.2
 channels==3.0
 channels-redis==3.3
@@ -90,11 +90,11 @@ openai==0.11
 django-celery-beat==2.2
 django-celery-results==2.2
 pandas==1.3
-'''
+```
 
 3. **Start Required Services**
 
-'''bash
+```bash
 # Start Redis Server
 redis-server
 
@@ -112,23 +112,23 @@ celery -A email_sender beat -l info
 
 # Run Django Development Server
 python manage.py runserver
-'''
+```
 
 ## ⚙️ Configuration
 
 Create a `.env` file in the root directory with the following variables:
 
-'''env
+```env
 DJANGO_SECRET_KEY=your_django_secret_key
 SENDGRID_API_KEY=your_sendgrid_api_key
 SENDGRID_FROM_EMAIL=your_verified_sender_email
 OPENAI_API_KEY=your_openai_api_key
 REDIS_URL=redis://localhost:6379/0
-'''
+```
 
 Update `settings.py` with your configuration:
 
-'''python
+```python
 # Email Settings
 EMAIL_BACKEND = 'sendgrid_backend.SendgridBackend'
 SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')
@@ -139,7 +139,7 @@ REDIS_URL = os.environ.get('REDIS_URL')
 
 # OpenAI Settings
 OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')
-'''
+```
 
 ## 🚀 Usage
 
@@ -193,18 +193,18 @@ OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')
 
 **REST Endpoints**
 
-'''plaintext
+```plaintext
 POST /api/contacts/upload/
 POST /api/templates/create/
 POST /api/emails/schedule/
 GET  /api/emails/status/<uuid:email_id>/
-'''
+```
 
 **WebSocket Events**
 
-'''plaintext
+```plaintext
 ws://<domain>/ws/emails/status/
-'''
+```
 
 ## 📄 License
 
